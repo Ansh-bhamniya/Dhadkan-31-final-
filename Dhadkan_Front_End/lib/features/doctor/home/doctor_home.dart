@@ -7,9 +7,6 @@ import 'package:flutter/material.dart';
 
 import '../../../utils/device/device_utility.dart';
 import 'doctor_buttons.dart';
-import '../../pending/pending_queue.dart';
-import '../../pending/pending_patient.dart';
-import '../../pending/pending_sync_service.dart';
 
 class DoctorHome extends StatefulWidget {
   const DoctorHome({super.key});
@@ -19,25 +16,10 @@ class DoctorHome extends StatefulWidget {
 }
 
 class _DoctorHomeState extends State<DoctorHome> {
-  int _pendingCount = 0;
   @override
   void initState() {
     super.initState();
     _validateTokenInBackground();
-    _initPending();
-  }
-
-  Future<void> _initPending() async {
-    await PendingSyncService.init();
-    setState(() {
-      _pendingCount = PendingQueue.length();
-    });
-    // Attempt a quick sync when opening the home page
-    await PendingSyncService.sync();
-    if (!mounted) return;
-    setState(() {
-      _pendingCount = PendingQueue.length();
-    });
   }
 
   Future<void> _validateTokenInBackground() async {
@@ -103,41 +85,6 @@ class _DoctorHomeState extends State<DoctorHome> {
       appBar: AppBar(
         title: const TopBar(title: "Welcome, Doctor"),
         actions: [
-          // Pending requests button with badge
-          IconButton(
-            onPressed: () async {
-              await Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => const PendingPatientScreen()),
-              );
-              setState(() {
-                _pendingCount = PendingQueue.length();
-              });
-            },
-            icon: Stack(
-              clipBehavior: Clip.none,
-              children: [
-                const Icon(Icons.cloud_upload_outlined),
-                if (_pendingCount > 0)
-                  Positioned(
-                    right: -2,
-                    top: -2,
-                    child: Container(
-                      padding: const EdgeInsets.all(2),
-                      decoration: const BoxDecoration(color: Colors.red, shape: BoxShape.circle),
-                      constraints: const BoxConstraints(minWidth: 16, minHeight: 16),
-                      child: Center(
-                        child: Text(
-                          _pendingCount.toString(),
-                          style: const TextStyle(color: Colors.white, fontSize: 10),
-                        ),
-                      ),
-                    ),
-                  ),
-              ],
-            ),
-            tooltip: 'Pending requests',
-          ),
           IconButton(
             onPressed: () {
               _forceLogout();
