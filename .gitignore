@@ -1,0 +1,46 @@
+# Global
+.DS_Store
+.env
+
+# Backend (Node.js)
+Dhadkan_Back_End/node_modules/
+Dhadkan_Back_End/.env
+Dhadkan_Back_End/uploads/
+Dhadkan_Back_End/npm-debug.log*
+Dhadkan_Back_End/yarn-debug.log*
+Dhadkan_Back_End/yarn-error.log*
+
+# Flutter / Dart
+Dhadkan_Front_End/.dart_tool/
+Dhadkan_Front_End/.packages
+Dhadkan_Front_End/build/
+Dhadkan_Front_End/.flutter-plugins
+Dhadkan_Front_End/.flutter-plugins-dependencies
+Dhadkan_Front_End/.metadata
+
+# Android specific
+Dhadkan_Front_End/android/.gradle/
+Dhadkan_Front_End/android/captures/
+Dhadkan_Front_End/android/app/build/
+Dhadkan_Front_End/android/local.properties
+
+# iOS/macOS specific
+Dhadkan_Front_End/ios/Flutter/Flutter.framework
+Dhadkan_Front_End/ios/Flutter/Flutter.podspec
+Dhadkan_Front_End/ios/Flutter/Generated.xcconfig
+Dhadkan_Front_End/ios/Flutter/ephemeral/
+Dhadkan_Front_End/ios/Pods/
+Dhadkan_Front_End/macos/Flutter/ephemeral/
+Dhadkan_Front_End/macos/Pods/
+
+# Xcode
+*.xcworkspace/
+*.xcuserstate
+*.xcuserdata/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+
